@@ -77,6 +77,6 @@ def part2(files: List[TextIOBase]) -> int:
     for line_str in file:
         line = Line.from_string(line_str)
         acc += apply(line, grid)
-    for row in [list(x) for x in zip(*grid)]:
-        print(row)
+    #for row in [list(x) for x in zip(*grid)]:
+    #    print(row)
     return acc
