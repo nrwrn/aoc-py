@@ -43,3 +43,13 @@ def test_d7_p2():
     file = resources.open_text(input, 'day7.txt')
     result = get_func(7, 2)([file])
     assert result == 168
+
+def test_d8_p1():
+    file = resources.open_text(input, 'day8.txt')
+    result = get_func(8, 1)([file])
+    assert result == 26
+
+def test_d8_p2():
+    file = resources.open_text(input, 'day8.txt')
+    result = get_func(8, 2)([file])
+    assert result == 61229
