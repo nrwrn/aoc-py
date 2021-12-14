@@ -18,3 +18,8 @@ def test_d5_p1():
     file = resources.open_text(input, 'day5.txt')
     result = get_func(5, 1)([file])
     assert result == 5
+
+def test_d5_p2():
+    file = resources.open_text(input, 'day5.txt')
+    result = get_func(5, 2)([file])
+    assert result == 12 
