@@ -18,7 +18,7 @@ def root_command(day: int, part: int, files: List[click.File]):
     print(get_func(day, part)(files))
 
 def get_func(day: int, part: int):
-    module_name = f"aoc.days.day{day}"
+    module_name = f"aoc.days.day{day:02}"
     try:
         mod = importlib.import_module(module_name)
         func = getattr(mod, f"part{part}")
