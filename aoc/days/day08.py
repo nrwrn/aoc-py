@@ -1,11 +1,13 @@
 from io import TextIOBase
 from typing import Callable, Dict, List, Tuple
 
+
 def parse_line(line: str) -> Tuple[List[str], List[str]]:
     divided = line.split(" | ", 2)
     tokenized = [sec.split() for sec in divided]
     sortified = [["".join(sorted(token)) for token in sec] for sec in tokenized]
     return sortified[0], sortified[1]
+
 
 def part1(files: List[TextIOBase]) -> int:
     acc = 0
@@ -16,18 +18,24 @@ def part1(files: List[TextIOBase]) -> int:
                 acc += 1
     return acc
 
+
 def segs(num: int) -> Callable[[str], bool]:
     def pred(segments: str) -> bool:
         return len(segments) == num
+
     return pred
+
 
 def diff(str1: str, str2: str) -> str:
     return list(set(str1) - set(str2))[0]
 
+
 def contains_all(substr: str) -> Callable[[str], bool]:
     def pred(superstr: str) -> bool:
         return all([char in superstr for char in substr])
+
     return pred
+
 
 def part2(files: List[TextIOBase]) -> int:
     acc = 0
@@ -52,6 +60,17 @@ def part2(files: List[TextIOBase]) -> int:
                 two = signal
             else:
                 five = signal
-        key = {zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9}
+        key = {
+            zero: 0,
+            one: 1,
+            two: 2,
+            three: 3,
+            four: 4,
+            five: 5,
+            six: 6,
+            seven: 7,
+            eight: 8,
+            nine: 9,
+        }
         acc += int("".join([str(key[output]) for output in outputs]))
     return acc

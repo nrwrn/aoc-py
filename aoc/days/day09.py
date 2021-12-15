@@ -9,7 +9,9 @@ def neighbors(c: Tuple[int, int]) -> List[Tuple[int, int]]:
     return [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]
 
 
-def real_neighbors(c: Tuple[int, int], grid: List[List[Any]]) -> Iterator[Tuple[int, int]]:
+def real_neighbors(
+    c: Tuple[int, int], grid: List[List[Any]]
+) -> Iterator[Tuple[int, int]]:
     for neighbor in neighbors(c):
         ni, nj = neighbor
         if ni in range(0, len(grid)) and nj in range(0, len(grid[0])):

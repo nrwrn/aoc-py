@@ -1,6 +1,7 @@
 from io import TextIOBase
 from typing import List
 
+
 class Line:
     def __init__(self, c1, c2) -> None:
         if c1[0] < c2[0]:
@@ -20,13 +21,13 @@ class Line:
     def from_string(cls, s: str):
         coords = [[int(s) for s in c_str.split(",")] for c_str in s.split(" -> ")]
         return cls((coords[0][0], coords[0][1]), (coords[1][0], coords[1][1]))
-    
+
     def extent(self) -> tuple[int, int]:
         return (max(self.c1[0], self.c2[0]), max(self.c1[1], self.c2[1]))
-    
+
     def is_straight(self) -> bool:
         return self.c1[0] == self.c2[0] or self.c1[1] == self.c2[1]
-    
+
     def points(self) -> List[tuple[int, int]]:
         if self.c1[0] == self.c2[0]:
             start = min(self.c1[1], self.c2[1])
@@ -36,10 +37,17 @@ class Line:
             start = min(self.c1[0], self.c2[0])
             end = max(self.c1[0], self.c2[0]) + 1
             return [(i, self.c1[1]) for i in range(start, end)]
-        else: # assume 45deg
-            start, end = (self.c1, self.c2) if self.c1[0] < self.c2[0] else (self.c2, self.c1)
-            y_range = range(start[1], end[1] + 1) if start[1] < end[1] else range(start[1], end[1] - 1, -1)
-            return [coord for coord in zip(range(start[0], end[0]+1), y_range)]
+        else:  # assume 45deg
+            start, end = (
+                (self.c1, self.c2) if self.c1[0] < self.c2[0] else (self.c2, self.c1)
+            )
+            y_range = (
+                range(start[1], end[1] + 1)
+                if start[1] < end[1]
+                else range(start[1], end[1] - 1, -1)
+            )
+            return [coord for coord in zip(range(start[0], end[0] + 1), y_range)]
+
 
 def max_extent(file: TextIOBase):
     max_extent = (0, 0)
@@ -48,6 +56,7 @@ def max_extent(file: TextIOBase):
         max_extent = (max(max_extent[0], extent[0]), max(max_extent[1], extent[1]))
     return max_extent
 
+
 def apply(line: Line, grid: List[List[int]]) -> int:
     acc = 0
     for pt in line.points():
@@ -55,6 +64,7 @@ def apply(line: Line, grid: List[List[int]]) -> int:
             acc += 1
         grid[pt[0]][pt[1]] += 1
     return acc
+
 
 def part1(files: List[TextIOBase]) -> int:
     file = files[0]
@@ -68,6 +78,7 @@ def part1(files: List[TextIOBase]) -> int:
             acc += apply(line, grid)
     return acc
 
+
 def part2(files: List[TextIOBase]) -> int:
     file = files[0]
     grid_size = max_extent(file)
@@ -77,6 +88,6 @@ def part2(files: List[TextIOBase]) -> int:
     for line_str in file:
         line = Line.from_string(line_str)
         acc += apply(line, grid)
-    #for row in [list(x) for x in zip(*grid)]:
+    # for row in [list(x) for x in zip(*grid)]:
     #    print(row)
     return acc

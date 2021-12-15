@@ -1,6 +1,7 @@
 from io import TextIOBase
 from typing import List
 
+
 def part1(files: List[TextIOBase]):
     file = files[0]
     prev_int = None
@@ -12,6 +13,7 @@ def part1(files: List[TextIOBase]):
                 acc += 1
         prev_int = cur_int
     return acc
+
 
 def part2(files: List[TextIOBase]):
     file = files[0]
