@@ -86,4 +86,4 @@ def test_d10_p1():
 def test_d10_p2():
     file = resources.open_text(input, "day10.txt")
     result = get_func(10, 2)([file])
-    assert result == None
+    assert result == 288957
