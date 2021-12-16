@@ -1,5 +1,5 @@
 from io import TextIOBase
-from typing import Any, List, Tuple, Iterator
+from typing import List
 
 
 open_close = {"(": ")", "[": "]", "{": "}", "<": ">"}
