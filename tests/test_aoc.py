@@ -87,3 +87,25 @@ def test_d10_p2():
     file = resources.open_text(input, "day10.txt")
     result = get_func(10, 2)([file])
     assert result == 288957
+
+def test_d11_p1():
+    file = resources.open_text(input, "day11.txt")
+    result = get_func(11, 1)([file])
+    assert result == 1656
+
+
+def test_d11_p2():
+    file = resources.open_text(input, "day11.txt")
+    result = get_func(11, 2)([file])
+    assert result == 195
+
+def test_d12_p1():
+    file = resources.open_text(input, "day12.txt")
+    result = get_func(12, 1)([file])
+    assert result == 226
+
+
+def test_d12_p2():
+    file = resources.open_text(input, "day12.txt")
+    result = get_func(12, 2)([file])
+    assert result == 3509
