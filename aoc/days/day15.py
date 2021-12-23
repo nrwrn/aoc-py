@@ -21,7 +21,8 @@ def iter_neighbors(grid: List[List[Any]]) -> Iterable[Tuple[Any, List[Any]]]:
 
 @dataclass
 class Node:
-    coord: Tuple[int, int, int]
+    coord: Tuple[int, int]
+    weight: int
 
     def __eq__(self, other):
         return self.coord == other.coord
@@ -38,23 +39,20 @@ class Graph:
 
     def __init__(self, grid: List[List[int]]):
         self.nodes = set()
-        pairs = []
+        n_grid = []
         self.edges = {}
         for i, row in enumerate(grid):
-            pair_row = []
+            n_row = []
             for j, weight in enumerate(row):
-                in_node = Node((i, j, 0))
-                out_node = Node((i, j, 1))
-                self.set_edge(in_node, out_node, weight)
-                pair_row.append((in_node, out_node))
-                self.nodes.add(in_node)
-                self.nodes.add(out_node)
-            pairs.append(pair_row)
-        for pair, neighbors in iter_neighbors(pairs):
-            for n_in, _ in neighbors:
-                self.set_edge(pair[1], n_in, 0)
-        self.start = pairs[0][0][1]
-        self.end = pairs[-1][-1][1]
+                node = Node((i, j), weight)
+                n_row.append(node)
+                self.nodes.add(node)
+            n_grid.append(n_row)
+        for src_node, neighbors in iter_neighbors(n_grid):
+            for tgt_node in neighbors:
+                self.set_edge(src_node, tgt_node, tgt_node.weight)
+        self.start = n_grid[0][0]
+        self.end = n_grid[-1][-1]
 
     def set_edge(self, frm, to, weight):
         if frm not in self.edges:
@@ -66,16 +64,20 @@ class Graph:
         dist = {node: sys.maxsize for node in self.nodes}
         prev = {}
         dist[self.start] = 0
+        has_dist = set([self.start])
 
         while q:
-            u = min(q, key=lambda node: dist[node])
+            u = min(has_dist, key=lambda node: dist[node])
             q.discard(u)
-            print(u.coord)
+            has_dist.discard(u)
+            if u.coord[0] % 10 == 0 and u.coord[1] % 10 == 0:
+                print(u.coord)
             valid_edges = [(tgt, weight) for tgt, weight in self.edges[u].items() if tgt in q]
             for neighbor, weight in valid_edges:
                 new_total = dist[u] + weight
                 if new_total < dist[neighbor]:
                     dist[neighbor] = new_total
+                    has_dist.add(neighbor)
                     prev[neighbor] = u
             if u is self.end:
                 return dist[u]
