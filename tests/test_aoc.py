@@ -134,3 +134,14 @@ def test_d14_p2():
     file = resources.open_text(input, "day14.txt")
     result = get_func(14, 2)([file])
     assert result == 2188189693529
+
+def test_d15_p1():
+    file = resources.open_text(input, "day15.txt")
+    result = get_func(15, 1)([file])
+    assert result == 40
+
+
+def test_d15_p2():
+    file = resources.open_text(input, "day15.txt")
+    result = get_func(15, 2)([file])
+    assert result == 315
