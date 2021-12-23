@@ -21,6 +21,14 @@ tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)"
 tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins"]
 
 [[package]]
+name = "bitstring"
+version = "3.1.9"
+description = "Simple construction, analysis and modification of binary data."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "black"
 version = "21.12b0"
 description = "The uncompromising code formatter."
@@ -208,7 +216,7 @@ python-versions = ">=3.6"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "4810c8f75e78dd3ccb232781d1c9b0bf7568f48f236b38d9d16bef3f0681cd02"
+content-hash = "ddd9f62483185095f04992a5a60ba2c780f73efef1cd01a774a6103b694a98c8"
 
 [metadata.files]
 atomicwrites = [
@@ -218,6 +226,11 @@ atomicwrites = [
 attrs = [
     {file = "attrs-21.2.0-py2.py3-none-any.whl", hash = "sha256:149e90d6d8ac20db7a955ad60cf0e6881a3f20d37096140088356da6c716b0b1"},
     {file = "attrs-21.2.0.tar.gz", hash = "sha256:ef6aaac3ca6cd92904cdd0d83f629a15f18053ec84e6432106f7a4d04ae4f5fb"},
+]
+bitstring = [
+    {file = "bitstring-3.1.9-py2-none-any.whl", hash = "sha256:e3e340e58900a948787a05e8c08772f1ccbe133f6f41fe3f0fa19a18a22bbf4f"},
+    {file = "bitstring-3.1.9-py3-none-any.whl", hash = "sha256:0de167daa6a00c9386255a7cac931b45e6e24e0ad7ea64f1f92a64ac23ad4578"},
+    {file = "bitstring-3.1.9.tar.gz", hash = "sha256:a5848a3f63111785224dca8bb4c0a75b62ecdef56a042c8d6be74b16f7e860e7"},
 ]
 black = [
     {file = "black-21.12b0-py3-none-any.whl", hash = "sha256:a615e69ae185e08fdd73e4715e260e2479c861b5740057fde6e8b4e3b7dd589f"},
