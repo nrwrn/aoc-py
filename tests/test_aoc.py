@@ -160,4 +160,15 @@ def test_d16_p2():
 def test_d16_p2_real():
     file = resources.open_text(input, "day16_real.txt")
     result = get_func(16, 2)([file])
-    assert result == None
+    assert result == 12883091136209
+
+def test_d17_p1():
+    file = resources.open_text(input, "day17.txt")
+    result = get_func(17, 1)([file])
+    assert result == 45
+
+
+def test_d17_p2():
+    file = resources.open_text(input, "day17.txt")
+    result = get_func(17, 2)([file])
+    assert result == 112
