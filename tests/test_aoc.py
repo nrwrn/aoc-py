@@ -172,3 +172,14 @@ def test_d17_p2():
     file = resources.open_text(input, "day17.txt")
     result = get_func(17, 2)([file])
     assert result == 112
+
+def test_d18_p1():
+    file = resources.open_text(input, "day18.txt")
+    result = get_func(18, 1)([file])
+    assert result == 4140
+
+
+def test_d18_p2():
+    file = resources.open_text(input, "day18.txt")
+    result = get_func(18, 2)([file])
+    assert result == 3993
